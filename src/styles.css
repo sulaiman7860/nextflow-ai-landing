@@ -157,3 +157,47 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes flow-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes ambient-drift {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-2%, 3%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility flow-dot {
+  animation: flow-pulse 3.4s ease-in-out infinite;
+}
+
+@utility ambient {
+  animation: ambient-drift 18s ease-in-out infinite;
+}
+
+@utility reveal {
+  animation: reveal-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@utility card-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
